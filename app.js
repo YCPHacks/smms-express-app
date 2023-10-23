@@ -10,7 +10,7 @@ app.use(
     authorizationParams: {
       response_type: 'code',
       audience: process.env.AUDIENCE,
-      scope: 'openid profile email'
+      scope: 'openid profile email scheduled_messages:list scheduled_messages:create'
     }
   })
 );
