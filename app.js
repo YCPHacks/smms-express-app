@@ -16,8 +16,6 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-  console.log(req.oidc.accessToken);
-
   res.status(200).send('OK');
 });
 
