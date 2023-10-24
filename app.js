@@ -1,7 +1,10 @@
 const express = require('express');
 const { auth } = require('express-openid-connect');
+const { fetch } = require('undici');
 
 const app = express();
+
+app.use(express.json());
 
 const port = process.env.PORT;
 
@@ -15,8 +18,11 @@ app.use(
   })
 );
 
-app.get('/', (req, res) => {
-  res.status(200).send('OK');
+app.get('/', async (req, res) => {
+  const result = await fetch(process.env.SCHEDULED_MESSAGES_URL);
+  const data = await result.json();
+
+  res.status(200).json(data);
 });
 
 app.listen(port, () => {
